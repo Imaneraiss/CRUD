@@ -43,6 +43,7 @@ input:focus{
     border-radius: 4px;
     margin: 5px 2px;
     padding: 7.5px 5px 0 4px;
+    width: 15%;
 }
 #total::before{
     content: 'Total : '; 

@@ -22,15 +22,15 @@
                 <small id="total" ></small>
             </div>
             <input type="number" id="count" placeholder="count">
-            <input type="number" id="category" placeholder="category">
+            <input type="text" id="category" placeholder="category">
             <button id="submit">Create</button>
         </div>
         <div class="outputs">
             <div class="searchBlock">
-                <input type="text" id="search" placeholder="search">
+                <input onkeyup="searchData(this.value)" type="text" id="search" placeholder="search">
                 <div class="btnSearch">
-                    <button id="searchByTitle">Search By Title</button>
-                    <button id="searchByCategory">Search By Category</button>
+                    <button onclick="getSearchMood(this.id)" id="searchByTitle">Search By Title</button>
+                    <button onclick="getSearchMood(this.id)" id="searchByCategory">Search By Category</button>
                 </div>
             </div>
             <div id="deleteAll"></div>
