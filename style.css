@@ -65,6 +65,7 @@ button:hover{
 .btnSearch{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 6px;
 }
 .btnSearch button{
     width: 45%;

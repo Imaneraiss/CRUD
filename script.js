@@ -93,6 +93,14 @@ function showData(){
     }
     console.log('done');
     document.getElementById('tbody').innerHTML = tbody;
+
+    let btnDelete = document.getElementById('deleteAll');
+    if(dataPro.length >0){
+        btnDelete.innerHTML= `<button onclick="deleteAll()" >Delete All</button>`;
+    }else{
+        btnDelete.innerHTML= ``;
+
+    }
 }
 window.onload = function(){
     showData();
@@ -107,10 +115,14 @@ function deleteData(i){
     showData();
 }
 
+function deleteAll(){
+    localStorage.clear();
+    dataPro.splice(0);
+    showData();
+}
 
 // search
 // create count product
-// update 
-// delete
+// update
 // count 
 // clean data
