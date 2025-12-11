@@ -7,7 +7,8 @@ let count = document.getElementById('count');
 let category = document.getElementById('category');
 let submit =document.getElementById('submit');
 let update = document.getElementById('update');
-
+let mood ='create';
+let tempo;
 
 
 
@@ -33,7 +34,7 @@ if (localStorage.product != null){
 // create product 
 submit.addEventListener('click',function(){
 
-    if(title.value != '' & total.innerHTML != '' ){
+    if(title.value != '' && total.innerHTML != '' ){
         let newPro= {
             title:title.value,
             price:price.value,
@@ -44,7 +45,21 @@ submit.addEventListener('click',function(){
             count:count.value ,
             category:category.value,
         }
-        dataPro.push(newPro);
+        if (mood =='create'){
+            if (newPro.count >1){
+                for(let i= 0; i<newPro.count ;i++){
+                    dataPro.push(newPro);
+                }
+            }else {
+                dataPro.push(newPro);
+            }
+        }else{
+            dataPro[tempo] = newPro;
+            mood = 'create';
+            submit.innerHTML ='Create';
+            count.style.display ='block';
+            console.log('good');
+        }
         localStorage.setItem('product',JSON.stringify(dataPro));
         console.log(dataPro);
         clearData()
@@ -82,10 +97,11 @@ function showData(){
                 <td>${dataPro[i].title}</td>
                 <td>${dataPro[i].price}</td>
                 <td>${dataPro[i].taxes}</td>
+                <td>${dataPro[i].ads}</td>
                 <td>${dataPro[i].discount}</td>
                 <td>${dataPro[i].total}</td>
                 <td>${dataPro[i].category}</td>
-                <td><button onclick="updateData()" id="update">update</button></td>
+                <td><button onclick="updateData(${i})" id="update">update</button></td>
                 <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
             
             </tr>
@@ -122,7 +138,23 @@ function deleteAll(){
 }
 
 // search
-// create count product
+
 // update
-// count 
+function updateData(i){
+    mood = 'update';
+    title.value = dataPro[i].title;
+    price.value =dataPro[i].price;
+    taxes.value = dataPro[i].taxes;
+    ads.value = dataPro[i].ads;
+    discount.value = dataPro[i].discount;
+    count.style.display = 'none'
+    total.innerHTML =dataPro[i].total;
+    category.value = dataPro[i].category;
+    submit.innerHTML = 'Update';
+    tempo =i;
+    scroll({
+        top:0 ,
+        behavior : "smooth"
+    })
+}
 // clean data
